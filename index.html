@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rotas Coletivo Barra do Garças</title>
-
-    <link rel="stylesheet" href="assets/leaflet/dist/leaflet.css" />
-
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/leaflet/node_modules/leaflet/dist/leaflet.css" />
+    <!-- JS -->
+    <link rel="stylesheet" href="assets/leaflet/node_modules/leaflet/dist/leaflet.js" />
+    <style>
+        #mapa { 
+            height: 600px;
+            width: 60%; 
+        }
+    </style>
 </head>
+
 <body>
 
     <h1>Está tudo funcionando?</h1>
@@ -28,7 +35,11 @@
 
     <div id="mapa"></div>
 
-    <script src="assets/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([51.505, -0.09], 13);
+    </script>
+
+    <script src="assets/leaflet/node_modules/leaflet/dist/leaflet.js"></script>
 
     <script src="assets/js/main.js"></script>
 
