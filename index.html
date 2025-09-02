@@ -10,38 +10,16 @@
     <link rel="stylesheet" href="assets/leaflet/node_modules/leaflet/dist/leaflet.js" />
     <style>
         #mapa { 
-            height: 600px;
-            width: 60%; 
+            height: 600px; 
         }
     </style>
 </head>
 
 <body>
-
-    <h1>Está tudo funcionando?</h1>
-    <p>ROTAS QUE EU CONHEÇO!!</p>
-    <form method="POST" action="rota01.php">
-        Saída:
-        <select>
-            <option value="i">Terminal</option>
-            <option value="i">Abel Lira</option>
-        </select>
-        Destino:
-        <select>
-            <option value="i">Terminal</option>
-            <option value="i">Abel Lira</option>
-        </select>
-    </form>
-
     <div id="mapa"></div>
 
     <script>
         var map = L.map('map').setView([51.505, -0.09], 13);
     </script>
-
-    <script src="assets/leaflet/node_modules/leaflet/dist/leaflet.js"></script>
-
-    <script src="assets/js/main.js"></script>
-
 </body>
 </html>
