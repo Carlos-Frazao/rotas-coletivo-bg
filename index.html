@@ -1,21 +1,36 @@
-<html>
-    <head>
-        <title>Rotas Coletivo Barra do Garças</title>
-        <meta charset="UTF-8">
-        <body>
-            Está tudo funcionando?<br>
-            ROTAS QUE EU CONHEÇO!!</p>
-            <form method="POST"action="rota01.php">
-                Saída:
-                    <select>
-                        <option value="i">Terminal</option>
-                        <option value="i">Abel Lira</option>
-                    </select>
-                Destino:
-                    <select>
-                        <option value="i">Terminal</option>
-                        <option value="i">Abel Lira</option>
-                    </select>
-        </body>
-    </head>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotas Coletivo Barra do Garças</title>
+
+    <link rel="stylesheet" href="assets/leaflet/leaflet.css" />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+    <h1>Está tudo funcionando?</h1>
+    <p>ROTAS QUE EU CONHEÇO!!</p>
+    <form method="POST" action="rota01.php">
+        Saída:
+        <select>
+            <option value="i">Terminal</option>
+            <option value="i">Abel Lira</option>
+        </select>
+        Destino:
+        <select>
+            <option value="i">Terminal</option>
+            <option value="i">Abel Lira</option>
+        </select>
+    </form>
+
+    <div id="mapa"></div>
+
+    <script src="assets/leaflet/leaflet.js"></script>
+
+    <script src="assets/js/main.js"></script>
+
+</body>
 </html>
