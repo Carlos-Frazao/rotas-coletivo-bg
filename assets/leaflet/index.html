@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotas Coletivo Barra do Garças</title>
+    <!--- CSS --->
+    <link rel="stylesheet" href="assets/leaflet/dist/leaflet.css" />
+    <!--- JS --->
+    <script src="assets/leaflet/dist/leaflet.js"></script>
+
+    <style>
+        #map {
+            height: 300px; width: 100%; 
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script>
+        var map = L.map('map').setView([-15.8944, -52.2570], 13);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+    </script>
+
+</body>
+</html>
