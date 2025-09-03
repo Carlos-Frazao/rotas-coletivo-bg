@@ -3,49 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa de Barra do Garças - MT</title>
+    <title>Meu Mapa com Leaflet</title>
     <!-- Importar CSS do Leaflet -->
-    <link rel="stylesheet" href="./assets/node_modules/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="./node_modules/leaflet/dist/leaflet.css" />
     <style>
         body {
             margin: 0;
             padding: 20px;
             font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
         }
         #map {
-            height: 700px;
+            height: 600px;
             width: 100%;
-            border-radius: 15px;
-            border: 3px solid #2c3e50;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            border: 2px solid #ccc;
         }
         h1 {
             color: #2c3e50;
             text-align: center;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-        .info {
-            text-align: center;
-            margin-bottom: 15px;
-            color: #555;
         }
     </style>
 </head>
 <body>
-    <h1>🗺️ Mapa de Barra do Garças - MT</h1>
-    <div class="info">Coordenadas: -15.8944, -52.2570</div>
+    <h1>🌍 Meu Primeiro Mapa com Leaflet</h1>
     <div id="map"></div>
 
     <!-- Importar JavaScript do Leaflet -->
-    <script src="./assets/node_modules/leaflet/dist/leaflet.js"></script>
+    <script src="./node_modules/leaflet/dist/leaflet.js"></script>
     <script>
-        // Coordenadas de Barra do Garças - MT
-        var barraDoGarcasCoords = [-15.8944, -52.2570];
-        
-        // Inicializar o mapa centrado em Barra do Garças
-        var map = L.map('map').setView(barraDoGarcasCoords, 13);
+        // Inicializar o mapa centrado em São Paulo
+        var map = L.map('map').setView([-23.5505, -46.6333], 13);
 
         // Adicionar camada do OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -53,73 +40,30 @@
             maxZoom: 19
         }).addTo(map);
 
-        // Adicionar marcador principal no centro da cidade
-        var marker = L.marker(barraDoGarcasCoords)
+        // Adicionar marcador
+        var marker = L.marker([-23.5505, -46.6333])
             .addTo(map)
-            .bindPopup(`
-                <b>Barra do Garças - MT</b><br>
-                🌆 Cidade localizada em Mato Grosso<br>
-                📍 Coordenadas: -15.8944, -52.2570<br>
-                🌊 Confluência dos rios Araguaia e Garças
-            `)
+            .bindPopup('<b>Olá! 🌟</b><br>Este é meu primeiro marcador no Leaflet!')
             .openPopup();
 
-        // Adicionar círculo ao redor do centro
-        var circle = L.circle(barraDoGarcasCoords, {
-            color: 'blue',
-            fillColor: '#3388ff',
-            fillOpacity: 0.3,
-            radius: 2000
-        }).addTo(map).bindPopup('Área central de Barra do Garças');
+        // Adicionar círculo
+        var circle = L.circle([-23.5505, -46.6340], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 500
+        }).addTo(map).bindPopup('Eu sou um círculo!');
 
-        // Adicionar alguns pontos de interesse (coordenadas aproximadas)
-        var pontosInteresse = [
-            {
-                coords: [-15.8900, -52.2500],
-                nome: "Ponte sobre o Rio Araguaia",
-                tipo: "ponte"
-            },
-            {
-                coords: [-15.9000, -52.2600],
-                nome: "Centro da Cidade",
-                tipo: "centro"
-            },
-            {
-                coords: [-15.8800, -52.2700],
-                nome: "Área Verde",
-                tipo: "parque"
-            }
-        ];
-
-        // Adicionar marcadores para pontos de interesse
-        pontosInteresse.forEach(function(ponto) {
-            var icone = L.icon({
-                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-                iconSize: [25, 41],
-                iconAnchor: [12, 41],
-                popupAnchor: [1, -34]
-            });
-            
-            L.marker(ponto.coords, {icon: icone})
-                .addTo(map)
-                .bindPopup(`<b>${ponto.nome}</b><br>${ponto.tipo}`);
-        });
+        // Adicionar polígono
+        var polygon = L.polygon([
+            [-23.5490, -46.6320],
+            [-23.5490, -46.6360],
+            [-23.5520, -46.6360],
+            [-23.5520, -46.6320]
+        ]).addTo(map).bindPopup('Eu sou um polígono!');
 
         // Adicionar controle de escala
-        L.control.scale({metric: true, imperial: false}).addTo(map);
-
-        // Adicionar controle de camadas (opcional)
-        L.control.layers({
-            "OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}/.png'),
-            "Satélite": L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-                subdomains: ['mt0','mt1','mt2','mt3'],
-                attribution: 'Google Satellite'
-            })
-        }).addTo(map);
-
-        // Adicionar mensagem no console
-        console.log('Mapa de Barra do Garças carregado com sucesso!');
-        console.log('Coordenadas:', barraDoGarcasCoords);
+        L.control.scale().addTo(map);
     </script>
 </body>
 </html>
