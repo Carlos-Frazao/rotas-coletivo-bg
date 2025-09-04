@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa de Barra do Garças - MT</title>
+    <title>Sistema de Rotas de Ônibus - Barra do Garças</title>
     
-    <!-- Leaflet CSS via CDN -->
+    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
     <style>
@@ -43,6 +43,40 @@
         .subtitle {
             font-size: 1.2rem;
             opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .route-selector {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .route-selector select, .route-selector button {
+            padding: 10px 15px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .route-selector select {
+            width: 250px;
+            background: white;
+            border: 1px solid #ddd;
+        }
+        
+        .route-selector button {
+            background: #1a2a6c;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .route-selector button:hover {
+            background: #2c3e50;
         }
         
         .content {
@@ -53,7 +87,7 @@
         }
         
         .map-container {
-            flex: 1;
+            flex: 2;
             min-width: 300px;
             border-radius: 15px;
             overflow: hidden;
@@ -99,6 +133,18 @@
             font-weight: bold;
         }
         
+        .route-info {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .route-info h3 {
+            color: #1a2a6c;
+            margin-bottom: 10px;
+        }
+        
         .attribution {
             text-align: center;
             color: white;
@@ -115,6 +161,17 @@
             h1 {
                 font-size: 2rem;
             }
+            
+            .route-selector {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .route-selector select, .route-selector button {
+                margin: 5px 0;
+                width: 100%;
+            }
         }
         
         /* Estilização dos popups do mapa */
@@ -127,14 +184,32 @@
             font-size: 14px;
             line-height: 1.5;
         }
+        
+        .bus-stop-marker {
+            background-color: #3388ff;
+            border: 2px solid white;
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Barra do Garças - Mato Grosso</h1>
-            <p class="subtitle">Conheça esta bela cidade localizada às margens do Rio Araguaia</p>
+            <h1>Rotas de Ônibus - Barra do Garças</h1>
+            <p class="subtitle">Visualize as rotas do transporte coletivo da cidade</p>
         </header>
+
+        <div class="route-selector">
+            <select id="routeSelector">
+                <option value="">Selecione uma rota</option>
+                <option value="rota1">Rota 1: Terminal → Abel Libro</option>
+                <option value="rota2">Rota 2: Centro → Vila Maria</option>
+                <option value="rota3">Rota 3: Jardim Europa → Ponte Metálica</option>
+            </select>
+            <button onclick="carregarRota()">Carregar Rota</button>
+        </div>
         
         <div class="content">
             <div class="map-container">
@@ -153,14 +228,10 @@
                     <p><span class="highlight">Economia:</span> pecuária, comércio, turismo e agricultura</p>
                 </div>
                 
-                <h2>Pontos Turísticos</h2>
-                <ul>
-                    <li>Rio Araguaia e suas praias</li>
-                    <li>Serra do Roncador</li>
-                    <li>Balneário Águas Quentes</li>
-                    <li>Ponte Metálica sobre o Rio Araguaia</li>
-                    <li>Morro de São Jerônimo</li>
-                </ul>
+                <div class="route-info">
+                    <h3>Informações da Rota</h3>
+                    <p id="routeDetails">Selecione uma rota para ver detalhes</p>
+                </div>
             </div>
         </div>
         
@@ -169,7 +240,7 @@
         </div>
     </div>
 
-    <!-- Leaflet JS via CDN -->
+    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <script>
@@ -185,52 +256,144 @@
             maxZoom: 19
         }).addTo(map);
         
-        // Adicionar marcador principal
-        const mainMarker = L.marker(barraDoGarcasCoords)
-            .addTo(map)
-            .bindPopup(`
-                <div style="text-align: center;">
-                    <h3 style="margin: 5px 0; color: #2c3e50;">Barra do Garças - MT</h3>
-                    <p style="margin: 5px 0;">Cidade às margens do Rio Araguaia</p>
-                    <p style="margin: 5px 0; font-size: 12px;">Coordenadas: -15.8944, -52.2570</p>
-                </div>
-            `)
-            .openPopup();
+        // Adicionar controle de escala
+        L.control.scale({metric: true, imperial: false}).addTo(map);
         
-        // Adicionar círculo ao redor do centro
-        const circle = L.circle(barraDoGarcasCoords, {
-            color: '#3388ff',
-            fillColor: '#3388ff',
-            fillOpacity: 0.2,
-            radius: 2000
-        }).addTo(map).bindPopup('Área central de Barra do Garças');
+        // Variáveis para armazenar a rota atual
+        let currentRoute = null;
+        let routeLayer = null;
         
-        // Adicionar pontos de interesse (coordenadas aproximadas)
-        const pontosInteresse = [
+        // Dados das rotas (coordenadas aproximadas)
+        const rotas = {
+            rota1: {
+                nome: "Terminal → Abel Libro",
+                pontos: [
+                    [-15.88541, -52.26663], // Terminal
+                    [-15.88650, -52.26820],
+                    [-15.88720, -52.27010],
+                    [-15.88800, -52.27250],
+                    [-15.88880, -52.27500],
+                    [-15.88950, -52.27780],
+                    [-15.89000, -52.28050],
+                    [-15.89050, -52.28320],
+                    [-15.89100, -52.28600],
+                    [-15.88143, -52.29645]  // Abel Libro
+                ],
+                detalhes: "Esta rota conecta o Terminal Central ao bairro Abel Libro, passando pela Avenida Principal. Tempo médio de percurso: 25 minutos. Intervalo entre ônibus: 30 minutos."
+            },
+            rota2: {
+                nome: "Centro → Vila Maria",
+                pontos: [
+                    [-15.89440, -52.25700], // Centro
+                    [-15.89600, -52.25900],
+                    [-15.89750, -52.26100],
+                    [-15.89900, -52.26350],
+                    [-15.90050, -52.26600],
+                    [-15.90200, -52.26900],
+                    [-15.90350, -52.27200],
+                    [-15.90450, -52.27500],
+                    [-15.90500, -52.27800],
+                    [-15.90550, -52.28100]  // Vila Maria
+                ],
+                detalhes: "Rota que liga o Centro à Vila Maria, passando pelo Hospital Municipal e pela Escola Estadual. Tempo médio de percurso: 20 minutos. Intervalo entre ônibus: 40 minutos."
+            },
+            rota3: {
+                nome: "Jardim Europa → Ponte Metálica",
+                pontos: [
+                    [-15.88000, -52.25000], // Jardim Europa
+                    [-15.88200, -52.25100],
+                    [-15.88400, -52.25200],
+                    [-15.88600, -52.25300],
+                    [-15.88800, -52.25400],
+                    [-15.89000, -52.25500],
+                    [-15.89200, -52.25550],
+                    [-15.89400, -52.25600],
+                    [-15.89600, -52.25650],
+                    [-15.89800, -52.25700]  // Ponte Metálica
+                ],
+                detalhes: "Rota turística que conecta o Jardim Europa à Ponte Metálica sobre o Rio Araguaia. Passa por pontos comerciais e áreas residenciais. Tempo médio de percurso: 15 minutos. Intervalo entre ônibus: 1 hora."
+            }
+        };
+        
+        // Função para carregar a rota selecionada
+        function carregarRota() {
+            const selecao = document.getElementById('routeSelector');
+            const rotaId = selecao.value;
+            
+            if (!rotaId) {
+                alert('Por favor, selecione uma rota.');
+                return;
+            }
+            
+            // Remover rota anterior se existir
+            if (routeLayer) {
+                map.removeLayer(routeLayer);
+            }
+            
+            // Obter dados da rota selecionada
+            currentRoute = rotas[rotaId];
+            
+            // Desenhar a rota no mapa
+            routeLayer = L.layerGroup().addTo(map);
+            
+            // Adicionar a linha da rota
+            const polyline = L.polyline(currentRoute.pontos, {
+                color: '#3388ff',
+                weight: 5,
+                opacity: 0.7,
+                smoothFactor: 1
+            }).addTo(routeLayer);
+            
+            // Adicionar marcadores para cada ponto
+            currentRoute.pontos.forEach((ponto, index) => {
+                let popupText;
+                
+                if (index === 0) {
+                    popupText = `<b>Início:</b> ${currentRoute.nome.split('→')[0].trim()}`;
+                } else if (index === currentRoute.pontos.length - 1) {
+                    popupText = `<b>Destino:</b> ${currentRoute.nome.split('→')[1].trim()}`;
+                } else {
+                    popupText = `<b>Ponto ${index}</b><br>Parada intermediária`;
+                }
+                
+                L.marker(ponto)
+                    .addTo(routeLayer)
+                    .bindPopup(popupText);
+            });
+            
+            // Ajustar o zoom para mostrar toda a rota
+            map.fitBounds(polyline.getBounds());
+            
+            // Atualizar informações da rota
+            document.getElementById('routeDetails').textContent = currentRoute.detalhes;
+        }
+        
+        // Adicionar alguns pontos de referência
+        const pontosReferencia = [
             {
-                coords: [-15.8900, -52.2500],
-                nome: "Ponte sobre o Rio Araguaia",
-                tipo: "📍 Ponte histórica"
+                coords: [-15.88541, -52.26663],
+                nome: "Terminal de Ônibus",
+                tipo: "🚉 Terminal"
             },
             {
-                coords: [-15.9000, -52.2600],
+                coords: [-15.89440, -52.25700],
                 nome: "Centro da Cidade",
                 tipo: "🏪 Área comercial"
             },
             {
-                coords: [-15.8800, -52.2700],
-                nome: "Praia do Rio Araguaia",
-                tipo: "🏖️ Área de lazer"
+                coords: [-15.89800, -52.25700],
+                nome: "Ponte Metálica",
+                tipo: "🌉 Ponte sobre o Rio Araguaia"
             },
             {
-                coords: [-15.9167, -52.2500],
-                nome: "Entrada para Serra do Roncador",
-                tipo: "⛰️ Ponto turístico"
+                coords: [-15.88143, -52.29645],
+                nome: "Abel Libro",
+                tipo: "🏘️ Bairro"
             }
         ];
         
-        // Adicionar marcadores para pontos de interesse
-        pontosInteresse.forEach(ponto => {
+        // Adicionar marcadores para pontos de referência
+        pontosReferencia.forEach(ponto => {
             L.marker(ponto.coords)
                 .addTo(map)
                 .bindPopup(`
@@ -240,24 +403,6 @@
                     </div>
                 `);
         });
-        
-        // Adicionar controle de escala
-        L.control.scale({metric: true, imperial: false}).addTo(map);
-        
-        // Adicionar camada de satélite
-        const satelliteLayer = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-            maxZoom: 20,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-            attribution: 'Google Satellite'
-        });
-        
-        // Adicionar controle de camadas
-        const baseLayers = {
-            "OpenStreetMap": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
-            "Satélite": satelliteLayer
-        };
-        
-        L.control.layers(baseLayers).addTo(map);
     </script>
 </body>
 </html>
