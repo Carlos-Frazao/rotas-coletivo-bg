@@ -52,18 +52,22 @@
             border-radius: 10px;
             margin: 20px 0;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
         }
         
         .route-selector select, .route-selector button {
             padding: 10px 15px;
-            margin: 0 10px;
             border: none;
             border-radius: 5px;
             font-size: 1rem;
         }
         
         .route-selector select {
-            width: 250px;
+            flex: 1;
+            min-width: 200px;
             background: white;
             border: 1px solid #ddd;
         }
@@ -163,13 +167,10 @@
             }
             
             .route-selector {
-                display: flex;
                 flex-direction: column;
-                gap: 10px;
             }
             
             .route-selector select, .route-selector button {
-                margin: 5px 0;
                 width: 100%;
             }
         }
@@ -185,7 +186,7 @@
             line-height: 1.5;
         }
         
-        .bus-stop-marker {
+        .bus-stop {
             background-color: #3388ff;
             border: 2px solid white;
             border-radius: 50%;
@@ -244,6 +245,25 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <script>
+        // Dados da Rota 01 (Terminal -> Abel_Libro) - do seu arquivo
+        var rota1 = {
+            nome: "Terminal - Abel_Libra",
+            pontos: [
+                [-15.885409798155381, -52.26663208796818], // Coordenadas do Terminal.
+                [-15.8858, -52.2680],
+                [-15.8862, -52.2705],
+                [-15.8868, -52.2732],
+                [-15.8875, -52.2760],
+                [-15.8882, -52.2790],
+                [-15.8888, -52.2820],
+                [-15.8895, -52.2850],
+                [-15.8900, -52.2880],
+                [-15.8905, -52.2910],
+                [-15.88143254882798, -52.2964542533495] // Coordenadas do Bairro Abel_Libro
+            ],
+            detalhes: "Esta rota conecta o Terminal Central ao bairro Abel Libro, passando pela Avenida Principal. Tempo médio de percurso: 25 minutos. Intervalo entre ônibus: 30 minutos."
+        };
+
         // Coordenadas de Barra do Garças - MT
         const barraDoGarcasCoords = [-15.8944, -52.2570];
         
@@ -263,24 +283,9 @@
         let currentRoute = null;
         let routeLayer = null;
         
-        // Dados das rotas (coordenadas aproximadas)
+        // Dados das rotas (com a rota1 do seu arquivo)
         const rotas = {
-            rota1: {
-                nome: "Terminal → Abel Libro",
-                pontos: [
-                    [-15.88541, -52.26663], // Terminal
-                    [-15.88650, -52.26820],
-                    [-15.88720, -52.27010],
-                    [-15.88800, -52.27250],
-                    [-15.88880, -52.27500],
-                    [-15.88950, -52.27780],
-                    [-15.89000, -52.28050],
-                    [-15.89050, -52.28320],
-                    [-15.89100, -52.28600],
-                    [-15.88143, -52.29645]  // Abel Libro
-                ],
-                detalhes: "Esta rota conecta o Terminal Central ao bairro Abel Libro, passando pela Avenida Principal. Tempo médio de percurso: 25 minutos. Intervalo entre ônibus: 30 minutos."
-            },
+            rota1: rota1,
             rota2: {
                 nome: "Centro → Vila Maria",
                 pontos: [
@@ -403,6 +408,11 @@
                     </div>
                 `);
         });
+        
+        // Adicionar marcador inicial no terminal
+        L.marker([-15.885409798155381, -52.26663208796818])
+            .addTo(map)
+            .bindPopup('<b>Terminal de Ônibus</b><br>Ponto inicial da Rota 1');
     </script>
 </body>
 </html>
