@@ -8,6 +8,8 @@
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    
     <style>
         * {
             margin: 0;
@@ -243,6 +245,12 @@
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+    <script>
+        // ... seu código JavaScript começa aqui ...
+    </script>
     
     <script>
         // Dados da Rota 01 (Terminal -> Abel_Libro) - do seu arquivo
@@ -280,8 +288,12 @@
         L.control.scale({metric: true, imperial: false}).addTo(map);
         
         // Variáveis para armazenar a rota atual
-        let currentRoute = null;
+
+        //let currentRoute = null;
+        let currentRouteControl = null; // Vamos usar isso para guardar a rota
+
         let routeLayer = null;
+
         
         // Dados das rotas (com a rota1 do seu arquivo)
         const rotas = {
@@ -321,93 +333,90 @@
         };
         
         // Função para carregar a rota selecionada
+        // Cole a nova função aqui
         function carregarRota() {
             const selecao = document.getElementById('routeSelector');
             const rotaId = selecao.value;
-            
+
             if (!rotaId) {
                 alert('Por favor, selecione uma rota.');
                 return;
             }
-            
+
             // Remover rota anterior se existir
-            if (routeLayer) {
-                map.removeLayer(routeLayer);
+            if (currentRouteControl) {
+                map.removeControl(currentRouteControl);
+                currentRouteControl = null;
             }
-            
+
             // Obter dados da rota selecionada
-            currentRoute = rotas[rotaId];
-            
-            // Desenhar a rota no mapa
-            routeLayer = L.layerGroup().addTo(map);
-            
-            // Adicionar a linha da rota
-            const polyline = L.polyline(currentRoute.pontos, {
-                color: '#3388ff',
-                weight: 5,
-                opacity: 0.7,
-                smoothFactor: 1
-            }).addTo(routeLayer);
-            
-            // Adicionar marcadores para cada ponto
-            currentRoute.pontos.forEach((ponto, index) => {
-                let popupText;
-                
-                if (index === 0) {
-                    popupText = `<b>Início:</b> ${currentRoute.nome.split('→')[0].trim()}`;
-                } else if (index === currentRoute.pontos.length - 1) {
-                    popupText = `<b>Destino:</b> ${currentRoute.nome.split('→')[1].trim()}`;
-                } else {
-                    popupText = `<b>Ponto ${index}</b><br>Parada intermediária`;
-                }
-                
-                L.marker(ponto)
-                    .addTo(routeLayer)
-                    .bindPopup(popupText);
-            });
-            
-            // Ajustar o zoom para mostrar toda a rota
-            map.fitBounds(polyline.getBounds());
-            
+            const currentRoute = rotas[rotaId];
+
+            // Mapear os pontos para o formato L.latLng
+            const waypoints = currentRoute.pontos.map(ponto => L.latLng(ponto[0], ponto[1]));
+
+            // Criar a rota com o plugin de Roteamento
+            currentRouteControl = L.Routing.control({
+                waypoints: waypoints,
+
+                // Define o serviço de roteamento (OSRM é gratuito)
+                router: L.Routing.osrmv1({
+                    serviceUrl: 'https://router.project-osrm.org/route/v1'
+                }),
+
+                // Estilo da linha (igual ao que você tinha)
+                lineOptions: {
+                    styles: [{color: '#3388ff', weight: 5, opacity: 0.7}]
+                },
+
+                addWaypoints: false, // Impede que o usuário adicione novos pontos
+                routeWhileDragging: false, // Não recalcula ao arrastar
+                show: true, // Mostra o painel com as direções
+
+                // Tenta esconder os marcadores "Start" e "End"
+                createMarker: function() { return null; }
+
+            }).addTo(map);
+
             // Atualizar informações da rota
             document.getElementById('routeDetails').textContent = currentRoute.detalhes;
         }
-        
-        // Adicionar alguns pontos de referência
-        const pontosReferencia = [
-            {
-                coords: [-15.88541, -52.26663],
-                nome: "Terminal de Ônibus",
-                tipo: "🚉 Terminal"
-            },
-            {
-                coords: [-15.89440, -52.25700],
-                nome: "Centro da Cidade",
-                tipo: "🏪 Área comercial"
-            },
-            {
-                coords: [-15.89800, -52.25700],
-                nome: "Ponte Metálica",
-                tipo: "🌉 Ponte sobre o Rio Araguaia"
-            },
-            {
-                coords: [-15.88143, -52.29645],
-                nome: "Abel Lira",
-                tipo: "🏘️ Bairro"
-            }
-        ];
-        
-        // Adicionar marcadores para pontos de referência
-        pontosReferencia.forEach(ponto => {
-            L.marker(ponto.coords)
-                .addTo(map)
-                .bindPopup(`
-                    <div style="text-align: center;">
-                        <b>${ponto.nome}</b><br>
-                        <span style="color: #666; font-size: 12px;">${ponto.tipo}</span>
-                    </div>
-                `);
-        });
+            
+            // Adicionar alguns pontos de referência
+            const pontosReferencia = [
+                {
+                    coords: [-15.88541, -52.26663],
+                    nome: "Terminal de Ônibus",
+                    tipo: "🚉 Terminal"
+                },
+                {
+                    coords: [-15.89440, -52.25700],
+                    nome: "Centro da Cidade",
+                    tipo: "🏪 Área comercial"
+                },
+                {
+                    coords: [-15.89800, -52.25700],
+                    nome: "Ponte Metálica",
+                    tipo: "🌉 Ponte sobre o Rio Araguaia"
+                },
+                {
+                    coords: [-15.88143, -52.29645],
+                    nome: "Abel Lira",
+                    tipo: "🏘️ Bairro"
+                }
+            ];
+            
+            // Adicionar marcadores para pontos de referência
+            pontosReferencia.forEach(ponto => {
+                L.marker(ponto.coords)
+                    .addTo(map)
+                    .bindPopup(`
+                        <div style="text-align: center;">
+                            <b>${ponto.nome}</b><br>
+                            <span style="color: #666; font-size: 12px;">${ponto.tipo}</span>
+                        </div>
+                    `);
+            });
         
         // Adicionar marcador inicial no terminal
         L.marker([-15.885409798155381, -52.26663208796818])
