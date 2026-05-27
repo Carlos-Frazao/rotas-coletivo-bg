@@ -16,7 +16,7 @@ var pontosInteresse = [
     {
         nome: "Ponte Metalica",
         tipo: "Ponto turistico",
-        icone: "🌉",
+        icone: "?",
         coords: [-15.89800, -52.25700]
     },
     {

@@ -31,6 +31,9 @@ var rota1 = {
         // Adicionar controle de escala
         L.control.scale({metric: true, imperial: false}).addTo(map);
         
+        // Inicializar paradas
+        inicializarParadas();
+        
         // Variáveis para armazenar a rota atual
 
         //let currentRoute = null;
@@ -182,6 +185,7 @@ const btnMenu = document.getElementById('btn-menu');
 const btnFechar = document.getElementById('btn-fechar');
 const menuLateral = document.getElementById('menu-lateral');
 const linkPontos = document.getElementById('link-pontos');
+const linkParadas = document.getElementById('link-paradas');
 
 function abrirMenu() {
     menuLateral.classList.add('ativo');
@@ -209,6 +213,12 @@ btnFechar.addEventListener('click', fecharMenu);
 linkPontos.addEventListener('click', function(event) {
     event.preventDefault();
     alternarPontosInteresse();
+    fecharMenu();
+});
+
+linkParadas.addEventListener('click', function(event) {
+    event.preventDefault();
+    alternarParadas();
     fecharMenu();
 });
 

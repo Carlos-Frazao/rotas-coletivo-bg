@@ -6,10 +6,14 @@
 }
 
 body {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-image: url("../img/background.jpeg");  /*Trocar imagem do fundo do site*/
+    background-size: cover; /*cover faz a imagem preencher a tela*/
+    background-position: center; /*center centraliza*/
+    background-repeat: no-repeat; /*no-repeat evita repetir*/
+    background-attachment: fixed; /*fixed deixa a imagem “parada” enquanto a página rola*/
+    color: #333;
     min-height: 100vh;
     padding: 20px;
-    color: #333;
 }
 
 .container {
@@ -90,11 +94,6 @@ h1 {
 .route-selector button:active {
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
-}
-
-.route-selector .btn-paradas {
-    flex: 0 1 auto;
-    min-width: 120px;
 }
 
 .content {
@@ -310,7 +309,6 @@ h1 {
 /* Estilizacao dos popups do mapa */
 .leaflet-popup-content-wrapper {
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .leaflet-popup-content {
@@ -320,30 +318,11 @@ h1 {
 }
 
 .bus-stop {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border: 3px solid white;
+    background-color: #3388ff;
+    border: 2px solid white;
     border-radius: 50%;
-    width: 14px;
-    height: 14px;
-    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.4);
-}
-
-.popup-parada {
-    text-align: left;
-    color: #333;
-}
-
-.popup-parada strong {
-    color: #667eea;
-    font-weight: 600;
-    font-size: 0.95rem;
-}
-
-.popup-parada span {
-    color: #666;
-    font-size: 0.9rem;
-    display: block;
-    margin-bottom: 8px;
+    width: 12px;
+    height: 12px;
 }
 
 /* =========================================

@@ -25,7 +25,8 @@
         <ul class="menu-links">
             <li><a href="#">🗺️ Mapa Principal</a></li>
             <li><a href="#">🚌 Linhas e Horários</a></li>
-            <li><a href="#" id="link-pontos">📍 Pontos</a></li>
+            <li><a href="#" id="link-paradas">🚏 Paradas de Ônibus</a></li>
+            <li><a href="#" id="link-pontos">📍 Pontos de Interesse</a></li>
             <li><a href="#">🎓 Sobre o Projeto</a></li>
             <li><a href="#">? Informações</a></li>
         </ul>
@@ -44,6 +45,7 @@
                 <option value="rota3">Rota 3: Jardim Europa → Ponte Metálica</option>
             </select>
             <button onclick="carregarRota()">Carregar Rota</button>
+            <button onclick="alternarParadas()" class="btn-paradas" title="Mostrar/Esconder Paradas">🚏 Paradas</button>
         </div>
         
         <div class="content">
@@ -79,6 +81,8 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
     <script src="pontos/pontos-interesse.js"></script>
+    <script src="pontos/paradas.js"></script>
+    <script src="assets/js/paradas.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>
