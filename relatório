@@ -1,3 +1,13 @@
 20 de março, arrumei o código, deixei todo modular 
-    css e js estava tudo dentro do index não dava pra entender nada 
+* css e js estava tudo dentro do index não dava pra entender nada 
 
+foi incluido a funcao carregarScript no main.js, para que ele puxe os outros scripts(localizacao, routing-machine e pontos-interesse.js), assim no index não é necessario anexar o source de todos eles, e sim apenas do main.js
+
+foi removido os 2 arquivos "paradas.js", visto que nao estavam sendo usados e nao tinham proposito de uso.
+
+possivel delete da pasta icone?
+
+mudar a cor do background também é uma boa, ficou estranho esse roxo. também adicionei bordas de 2px no .route-selector, .map-container, .info-panel e .btn-menu, a ideia era apenas no btn, pois era dificil ver os 3 pontos por que o background tem a mesma cor, ai acabei colocando nos 4 pra dar uma diferenciada.
+
+possivel diminuicao do info-panel? ele fica muito grande no modo de dispositivo mobile, maior que o proprio mapa, talvez diminuir ou tirar algumas informações dele melhore, e também aumentar o height do map.
+-> OBS: o btn-menu(botao que abre o menu lateral) fica em cima do titulo, mais ou menos em cima da palavra Rotas, seria interessante deixar ele em algum lugar especifico da pagina, como por exemplo embaixo do subtitulo(eu acho que iria ficar daora).

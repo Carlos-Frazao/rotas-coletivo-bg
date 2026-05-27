@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Rotas de Ônibus - Barra do Garças</title>
-    
+
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-    
-    <!-- Tirar esse style daqui e colocar dentro da pasta /estilos, criar arquivos  -->
-    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
-    <button id="btn-menu" class="btn-menu" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-lateral">
+    <button id="btn-menu" class="btn-menu" type="button" aria-label="Abrir menu" aria-expanded="false"
+        aria-controls="menu-lateral">
         ⋮
     </button>
 
@@ -30,7 +33,7 @@
             <li><a href="#">🎓 Sobre o Projeto</a></li>
             <li><a href="#">? Informações</a></li>
         </ul>
-    </nav>  
+    </nav>
     <div class="container">
         <header>
             <h1>Rotas de Ônibus - Barra do Garças!!!!</h1>
@@ -47,42 +50,42 @@
             <button onclick="carregarRota()">Carregar Rota</button>
             <button onclick="alternarParadas()" class="btn-paradas" title="Mostrar/Esconder Paradas">🚏 Paradas</button>
         </div>
-        
+
         <div class="content">
             <div class="map-container">
                 <div id="map"></div>
             </div>
-            
+
             <div class="info-panel">
                 <h2>Informações da Cidade</h2>
-                
+
                 <div class="location-info">
-                    <p><span class="highlight">Barra do Garças</span> é um município brasileiro do estado de Mato Grosso, localizado a uma altitude de 318 metros.</p>
-                    <p>A cidade fica na divisa com o estado de Goiás, às margens do Rio Araguaia, sendo um importante centro turístico da região.</p>
+                    <p><span class="highlight">Barra do Garças</span> é um município brasileiro do estado de Mato
+                        Grosso, localizado a uma altitude de 318 metros.</p>
+                    <p>A cidade fica na divisa com o estado de Goiás, às margens do Rio Araguaia, sendo um importante
+                        centro turístico da região.</p>
                     <p><span class="highlight">População:</span> aproximadamente 60.000 habitantes (2023)</p>
                     <p><span class="highlight">Área:</span> 9.078 km²</p>
                     <p><span class="highlight">Distância de Cuiabá:</span> 516 km</p>
                     <p><span class="highlight">Economia:</span> pecuária, comércio, turismo e agricultura</p>
                 </div>
-                
+
                 <div class="route-info">
                     <h3>Informações da Rota</h3>
                     <p id="routeDetails">Selecione uma rota para ver detalhes</p>
                 </div>
             </div>
         </div>
-        
+
         <div class="attribution">
             <p>Mapa desenvolvido com Leaflet | Dados do OpenStreetMap</p>
         </div>
     </div>
 
-    <!-- Leaflet JS -->
+    <!-- SCRIPTS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-    <script src="pontos/pontos-interesse.js"></script>
-    <script src="pontos/paradas.js"></script>
-    <script src="assets/js/paradas.js"></script>
     <script src="assets/js/main.js"></script>
+    <!-- SCRIPTS -->
 </body>
+
 </html>
