@@ -1,0 +1,2 @@
+pasta criada para tentar resolver o problema de que toda vez 
+ao entrar no site, ele pede para ativar a localização msm vc já ativando

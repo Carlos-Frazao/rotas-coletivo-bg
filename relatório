@@ -15,3 +15,27 @@ possivel diminuicao do info-panel? ele fica muito grande no modo de dispositivo 
 
 Carlos:
     Arrumando os três pontinhos
+    criar um página a parte para exibir as informações 
+    E tbm alguns dados do projeto
+    O que foi criado:
+    1️⃣ Página de Informações
+    📄 menu-lateral/informacoes/index.html
+    Dados sobre Barra do Garças, população, economia, etc.
+    Design responsivo com scroll interno
+    2️⃣ Página Sobre o Projeto
+    📄 menu-lateral/sobre-projeto/index.html
+    Descrição do projeto, tecnologias usadas, funcionalidades
+    Grid de tecnologias
+    Futuras melhorias
+    3️⃣ CSS Modularizado
+    🎨 assets/css/modal.css
+    Estilos para modais/páginas
+    Responsivo (desktop, tablet, mobile)
+    Animações suaves
+    4️⃣ JavaScript Modularizado
+    🔧 assets/js/modal.js
+    Gerencia fechamento com botões e ESC
+    Volta para página anterior com history.back()
+    5️⃣ Menu Atualizado
+    Menu lateral agora aponta para as novas páginas
+    Links funcionais: "❓ Informações" e "🎓 Sobre o Projeto"
