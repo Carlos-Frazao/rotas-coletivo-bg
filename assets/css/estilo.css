@@ -306,7 +306,7 @@ h1 {
    ========================================= */
 
 .btn-menu {
-    position: fixed;
+    position: none;
     top: 20px;
     left: 20px;
     width: 48px;

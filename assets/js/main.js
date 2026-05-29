@@ -8,9 +8,9 @@ var limiteMapa = L.latLngBounds(
 
 var map = L.map('map', {
     center: [-15.891592075822096, -52.261878286117124],
-    zoom: 15,
-    minZoom: 10,
-    maxZoom: 20,
+    zoom: 13,
+    minZoom: 12,
+    maxZoom: 16,
     maxBounds: limiteMapa,
     maxBoundsViscosity: 1.0
 });
