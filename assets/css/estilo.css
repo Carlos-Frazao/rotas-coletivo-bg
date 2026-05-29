@@ -119,7 +119,6 @@ h1 {
 }
 
 .map-container:hover {
-    transform: translateY(-4px);
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
 }
 
@@ -302,7 +301,7 @@ h1 {
 /* Estilizacao dos popups do mapa */
 
 /* =========================================
-   ESTILOS DO MENU DE TRÃƒÆ’Ã…Â S PONTOS (OFF-CANVAS)
+   ESTILOS DO MENU DE TRÃƒÆ’Ã†â€™Ãƒâ€¦Ã‚Â S PONTOS (OFF-CANVAS)
    ========================================= */
 
 .btn-menu {
