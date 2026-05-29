@@ -63,24 +63,4 @@ const rotasDefinidas = {
             e se o transito estiver bom, o tempo estimado é de 20 à 30 minutos.
         `
     },
-
-    rota2: {
-        inicio: [-15.891592, -52.261878],
-        fim: [-15.894885, -52.264227],
-        descricao: `
-            <strong>Rota 2:</strong>
-            Linha expressa ligando o Centro ao bairro Vila Maria.
-            Atendimento de segunda a sábado com alta frequência nos horários de pico.
-        `
-    },
-
-    rota3: {
-        inicio: [-15.882916, -52.264379],
-        fim: [-15.891317, -52.259715],
-        descricao: `
-            <strong>Rota 3:</strong>
-            Trajeto que conecta o Jardim Europa à Ponte Metálica.
-            Rota panorâmica que passa pela orla do rio interligando as regiões.
-        `
-    }
 };
