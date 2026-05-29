@@ -7,11 +7,10 @@
     <title>Sistema de Rotas de Ônibus - Barra do Garças</title>
 
     <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/leaflet.css">
+    <link rel="stylesheet" href="assets/css/leaflet-routing-machine.css">
+    <link rel="stylesheet" href="assets/css/estilo.css">
+    <!-- Leaflet CSS -->
 </head>
 
 <body>
@@ -27,11 +26,8 @@
         </div>
         <ul class="menu-links">
             <li><a href="#">🗺️ Mapa Principal</a></li>
-            <li><a href="#">🚌 Linhas e Horários</a></li>
-            <li><a href="#" id="link-paradas">🚏 Paradas de Ônibus</a></li>
-            <li><a href="#" id="link-pontos">📍 Pontos de Interesse</a></li>
-            <li><a href="menu-lateral/informacoes/index.html">❓ Informações</a></li>
-            <li><a href="menu-lateral/sobre-projeto/index.html">🎓 Sobre o Projeto</a></li>
+            <li><a href="menu-lateral/info-geral.html">❓ Informações</a></li>
+            <li><a href="menu-lateral/info-projeto.html">🎓 Sobre o Projeto</a></li>
         </ul>
     </nav>
     <div class="container">
@@ -43,12 +39,12 @@
         <div class="route-selector">
             <select id="routeSelector">
                 <option value="">Selecione uma rota</option>
-                <option value="rota1">Rota 1: Terminal → Abel Lira</option>
+                <option value="rota1">Rota 1: Terminal → Águas Quentes</option>
                 <option value="rota2">Rota 2: Centro → Vila Maria</option>
                 <option value="rota3">Rota 3: Jardim Europa → Ponte Metálica</option>
             </select>
             <button onclick="carregarRota()">Carregar Rota</button>
-            <button onclick="alternarParadas()" class="btn-paradas" title="Mostrar/Esconder Paradas">🚏 Paradas</button>
+            <button onclick="alternarPontosInteresse()" class="btn-paradas" title="Mostrar/Esconder Pontos">🚏 Pontos</button>
         </div>
 
         <div class="content">
@@ -57,19 +53,6 @@
             </div>
 
             <div class="info-panel">
-                <h2>Informações da Cidade</h2>
-
-                <div class="location-info">
-                    <p><span class="highlight">Barra do Garças</span> é um município brasileiro do estado de Mato
-                        Grosso, localizado a uma altitude de 318 metros.</p>
-                    <p>A cidade fica na divisa com o estado de Goiás, às margens do Rio Araguaia, sendo um importante
-                        centro turístico da região.</p>
-                    <p><span class="highlight">População:</span> aproximadamente 60.000 habitantes (2023)</p>
-                    <p><span class="highlight">Área:</span> 9.078 km²</p>
-                    <p><span class="highlight">Distância de Cuiabá:</span> 516 km</p>
-                    <p><span class="highlight">Economia:</span> pecuária, comércio, turismo e agricultura</p>
-                </div>
-
                 <div class="route-info">
                     <h3>Informações da Rota</h3>
                     <p id="routeDetails">Selecione uma rota para ver detalhes</p>
@@ -84,12 +67,8 @@
 
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-    <script src="pontos/pontos-interesse.js"></script>
-    <script src="pontos/paradas.js"></script>
-    <script src="assets/js/geolocation.js"></script>
-    <script src="assets/js/paradas.js"></script>
     <script src="assets/js/main.js"></script>
+    <!-- SCRIPTS -->
 </body>
 
 </html>

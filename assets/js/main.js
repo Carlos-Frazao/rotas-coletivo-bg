@@ -1,10 +1,22 @@
-// inicia o mapa
-var map = L.map('map').setView([-15.891592075822096, -52.261878286117124], 14);
+// inicia o mapa com borda limite, para que o usuario não va alem de bg
+// lembrando que precisa apenas de 2 pontos, que no caso vão ser as extremidades do mapa, o canto superior direito e o inferior esquerdo 
 
-// Adicionar camada do OpenStreetMap
+var limiteMapa = L.latLngBounds(
+    [-15.921688802374888, -52.336126347434714], // canto inferior esquerdo
+    [-15.847337478348539, -52.19212862753714]  // canto superior direito
+);
+
+var map = L.map('map', {
+    center: [-15.891592075822096, -52.261878286117124],
+    zoom: 15,
+    minZoom: 10,
+    maxZoom: 20,
+    maxBounds: limiteMapa,
+    maxBoundsViscosity: 1.0
+});
+
+// adiciona o mapa do openstreetmap
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    minZoom: 14,
     attribution: '&copy; OpenStreetMap'
 }).addTo(map);
 
@@ -18,12 +30,12 @@ function carregarScript(src, callback) {
     script.onload = callback || function () { };
     document.body.appendChild(script);
 }
-carregarScript('assets/js/leaflet-routing-machine.js', function () {
-    carregarScript('assets/js/localizacao.js');
-    ;carregarScript('pontos/pontos-interesse.js');
-});
-// ================================================ //
-
+carregarScript('assets/motor/leaflet-routing-machine.js');
+carregarScript('assets/js/localizacao.js');
+carregarScript('pontos/pontos-interesse.js');
+carregarScript('secao/geolocation.js');
+carregarScript('rotas/rotas.js');
+carregarScript('assets/js/modal.js');
 
 // variaveis pra armazenar as rotas //
 let controleRota = null;
@@ -31,8 +43,6 @@ let controleRota = null;
 let routeLayer = null;
 let pontosLayer = L.layerGroup().addTo(map);
 let pontosVisiveis = false;
-// ================================ //
-
 
 // ================================ //
 //         localizacao real         //
@@ -43,34 +53,33 @@ function tracarRotaPara(destinoLatLng) {
         return;
     }
 
-    // Se já existir uma rota na tela, removemos para criar a nova
+    // se ja tiver uma rota no mapa ele vai tirar
     if (controleRota) {
         map.removeControl(controleRota);
     }
 
-    // Cria a rota a partir da sua localização até o marcador que foi clicado
+    // cria uma rota a partir da sua localizacao usando o localizacao.js e o leaflet-routing-machine.js //
     controleRota = L.Routing.control({
         waypoints: [
-            minhaLocalizacao, // Origem fixa: Onde você está
-            destinoLatLng     // Destino: O marcador clicado
+            minhaLocalizacao, // onde voce ta, baseado no localizacao.js //
+            destinoLatLng     // destino: marcador do pontos_interesse.js //
         ],
         lineOptions: {
-            styles: [{ color: '#008cff', weight: 4 }] // Cor diferenciada para a rota
+            styles: [{ color: 'red', weight: 4 }] // cor da linha da rota, e a espessura // 
         },
         language: 'pt-BR',
-        createMarker: function () { return null; } // Opcional: Oculta os marcadores "A" e "B" extras do plugin para não duplicar os que já criamos
+        createMarker: function () { return null; } // para nao criar os marcadores padroes da rota //
     }).addTo(map);
 }
 
-// =========================================
-// LÓGICA DO MENU DE TRÊS PONTOS
-// =========================================
+// ========================================= //
+//       LÓGICA DO MENU DE TRÊS PONTOS       //
+// ========================================= //
 
 const btnMenu = document.getElementById('btn-menu');
 const btnFechar = document.getElementById('btn-fechar');
 const menuLateral = document.getElementById('menu-lateral');
-const linkPontos = document.getElementById('link-pontos');
-
+const linkPontos = document.getElementById('link-pontos'); // esse quem faz os pontos aparecerem //
 
 function abrirMenu() {
     menuLateral.classList.add('ativo');
@@ -84,7 +93,7 @@ function fecharMenu() {
     btnMenu.setAttribute('aria-expanded', 'false');
 }
 
-btnMenu.addEventListener('click', function() {
+btnMenu.addEventListener('click', function () {
     if (menuLateral.classList.contains('ativo')) {
         fecharMenu();
         return;
@@ -95,21 +104,14 @@ btnMenu.addEventListener('click', function() {
 
 btnFechar.addEventListener('click', fecharMenu);
 
-linkPontos.addEventListener('click', function(event) {
+linkPontos.addEventListener('click', function (event) {
     event.preventDefault();
     alternarPontosInteresse();
     fecharMenu();
 });
 
-linkParadas.addEventListener('click', function(event) {
-    event.preventDefault();
-    alternarParadas();
-    fecharMenu();
-});
-
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') {
         fecharMenu();
     }
 });
-// ================================ //

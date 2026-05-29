@@ -2,7 +2,7 @@ function criarIconePonto(ponto) {
     return L.divIcon({
         className: 'icone-ponto-interesse',
         html: `<span>${ponto.icone || '📍'}</span>`,
-        iconSize: [50, 50],
+        iconSize: [55, 55],
         iconAnchor: [17, 34],
         popupAnchor: [0, -30]
     });
@@ -27,11 +27,11 @@ function mostrarPontosInteresse() {
                         </div>
                     `);
 
-        marcador.on('click', function (e) {
-            tracarRotaPara(e.target.getLatLng());
-        });
+        marcador.on('click', function(e) {
+        tracarRotaPara(e.target.getLatLng());
+    });
 
-        return marcador;
+    return marcador;          
     });
 
     pontosVisiveis = true;
@@ -91,5 +91,9 @@ window.pontosInteresse = [
     { coords: [-15.894932097899574, -52.333151987314075], nome: "Ponto 37", icone: "📍", tipo: "Parada" },
     { coords: [-15.895306465173746, -52.33135531821834], nome: "Ponto 38", icone: "📍", tipo: "Parada" },
     { coords: [-15.87846811611358, -52.28709870638164], nome: "Ponto 39", icone: "📍", tipo: "Parada" },
-    { coords: [-15.878241346896402, -52.3017450992273], nome: "Ponto 40", icone: "📍", tipo: "Parada" }
+    { coords: [-15.878241346896402, -52.3017450992273], nome: "Ponto 40", icone: "📍", tipo: "Parada" },
+    { coords: [-15.880598465759567, -52.24190625442078], nome: "Ponto 41", icone: "📍", tipo: "Parada" },
+    { coords: [-15.881554224572927, -52.24118174922814], nome: "Ponto 42", icone: "📍", tipo: "Parada" },
+    { coords: [-15.892400569990146, -52.2624881083946], nome: "Ponto 43", icone: "📍", tipo: "Parada" },
+    { coords: [-15.875057197194023, -52.26576645146297], nome: "Ponto 44", icone: "📍", tipo: "Parada" }
 ];

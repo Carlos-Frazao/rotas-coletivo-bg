@@ -15,7 +15,7 @@ html, body {
 }
 
 body.modal-open {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(155deg, #252525 10%, #6f0f0f 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -33,8 +33,8 @@ body.modal-open {
 }
 
 .modal-container {
-    background: white;
-    border-radius: 16px;
+    background: #ffffff;
+    border-radius: 10px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     width: 100%;
     max-width: 700px;
@@ -42,7 +42,7 @@ body.modal-open {
     flex-direction: column;
     max-height: 90vh;
     overflow: hidden;
-    animation: slideUp 0.4s ease-out;
+    animation: slideUp 0.4s ease-out;    
 }
 
 .modal-header {
@@ -50,8 +50,8 @@ body.modal-open {
     justify-content: space-between;
     align-items: center;
     padding: 30px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(155deg, #000000 10%, #8f0f0f 100%);
+    color: #ffffff;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -92,17 +92,12 @@ body.modal-open {
 }
 
 .modal-content::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #ffffff;
     border-radius: 10px;
 }
 
 .modal-content::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 10px;
-}
-
-.modal-content::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    background: #8c01ae;
 }
 
 .info-section {
@@ -116,7 +111,7 @@ body.modal-open {
 }
 
 .info-section h2 {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #f64545 0%, #ffb001 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -226,7 +221,7 @@ body.modal-open {
 
 .btn-voltar {
     padding: 12px 24px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, rgb(214 160 11 / 90%) 0%, rgb(149 97 1 / 90%) 100%);
     color: white;
     border: none;
     border-radius: 8px;

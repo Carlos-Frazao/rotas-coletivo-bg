@@ -6,14 +6,10 @@
 }
 
 body {
-    background-image: url("../img/background.jpeg");  /*Trocar imagem do fundo do site*/
-    background-size: cover; /*cover faz a imagem preencher a tela*/
-    background-position: center; /*center centraliza*/
-    background-repeat: no-repeat; /*no-repeat evita repetir*/
-    background-attachment: fixed; /*fixed deixa a imagem “parada” enquanto a página rola*/
-    color: #333;
+    background: linear-gradient(155deg, #252525 10%, #6f0f0f 100%);
     min-height: 100vh;
     padding: 20px;
+    color: #333;
 }
 
 .container {
@@ -23,16 +19,17 @@ body {
 
 header {
     text-align: center;
-    padding: 40px 20px;
-    color: white;
-    margin-bottom: 30px;
+    padding: 20px 20px;
+    color: #ffffff;
     animation: slideDown 0.6s ease-out;
 }
 
 h1 {
     font-size: clamp(1.8rem, 5vw, 2.8rem);
+    border: 1px solid black;
+    background: white;
     margin-bottom: 10px;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .subtitle {
@@ -44,7 +41,8 @@ h1 {
 }
 
 .route-selector {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgb(255 255 255 / 95%);
+    border: 2px solid black;
     padding: 20px;
     border-radius: 12px;
     margin: 20px 0;
@@ -82,7 +80,7 @@ h1 {
 }
 
 .route-selector button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #a11d1d 0%, #d59811 100%);
     color: white;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -96,6 +94,11 @@ h1 {
     box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
 }
 
+.route-selector .btn-paradas {
+    flex: 0 1 auto;
+    min-width: 120px;
+}
+
 .content {
     display: flex;
     flex-wrap: wrap;
@@ -106,12 +109,14 @@ h1 {
 
 .map-container {
     flex: 2;
-    min-width: 280px;
+    width: 300px;
+    height: 400px;
     border-radius: 16px;
+    border: 2px solid black;
     overflow: hidden;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-    background: white;
-    padding: 12px;
+    background: #ffffff;
+    padding: 5px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -121,7 +126,7 @@ h1 {
 }
 
 #map {
-    height: clamp(350px, 60vh, 600px);
+    height: 100%;
     width: 100%;
     border-radius: 12px;
     z-index: 1;
@@ -132,6 +137,7 @@ h1 {
     min-width: 280px;
     background: white;
     border-radius: 16px;
+    border: 2px solid black;
     padding: 28px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -143,7 +149,7 @@ h1 {
 }
 
 .info-panel h2 {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #ff8e01 0%, #855601 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -182,7 +188,7 @@ h1 {
 }
 
 .route-info h3 {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #000000 0%, #000000 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -307,26 +313,9 @@ h1 {
 }
 
 /* Estilizacao dos popups do mapa */
-.leaflet-popup-content-wrapper {
-    border-radius: 8px;
-}
-
-.leaflet-popup-content {
-    margin: 15px;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.bus-stop {
-    background-color: #3388ff;
-    border: 2px solid white;
-    border-radius: 50%;
-    width: 12px;
-    height: 12px;
-}
 
 /* =========================================
-   ESTILOS DO MENU DE TRÊS PONTOS (OFF-CANVAS)
+   ESTILOS DO MENU DE TRÃƒÆ’Ã…Â S PONTOS (OFF-CANVAS)
    ========================================= */
 
 .btn-menu {
@@ -338,22 +327,20 @@ h1 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%);
-    color: white;
-    border: none;
+    background: linear-gradient(135deg, rgb(255 188 0 / 90%) 0%, rgb(149 97 1 / 90%) 100%);
+    color: #ffffff;
+    border: 2px solid black;;
     border-radius: 50%;
     cursor: pointer;
     font-size: 28px;
     line-height: 1;
     z-index: 2500;
-    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 }
 
 .btn-menu:hover,
 .btn-menu:focus-visible {
     transform: scale(1.1) rotate(90deg);
-    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
 }
 
 .menu-lateral {
@@ -362,7 +349,7 @@ h1 {
     left: -280px;
     width: 280px;
     height: 100vh;
-    background: linear-gradient(180deg, #2d3561 0%, #1a1a2e 100%);
+    background: linear-gradient(155deg, #0b0b0b 10%, #6f0f0f 100%);
     color: white;
     transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 3000;
@@ -379,13 +366,13 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+    border-bottom: 2px solid rgb(255 165 0);
     padding-bottom: 15px;
     margin-bottom: 25px;
 }
 
 .menu-cabecalho h2 {
-    color: white;
+    color: #ffffff;
     font-size: 1.5rem;
     font-weight: 700;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -396,7 +383,7 @@ h1 {
 
 .btn-fechar {
     background: none;
-    color: #ff6b6b;
+    color: #df3a3a;
     border: none;
     font-size: 26px;
     cursor: pointer;
@@ -406,7 +393,6 @@ h1 {
 }
 
 .btn-fechar:hover {
-    background: rgba(255, 107, 107, 0.1);
     transform: rotate(90deg);
 }
 
@@ -423,8 +409,7 @@ h1 {
     display: block;
     color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
-    padding: 12px 14px;
-    border-radius: 8px;
+    padding: 10px;
     transition: all 0.3s ease;
     font-weight: 500;
     border-left: 3px solid transparent;
@@ -439,19 +424,9 @@ h1 {
 }
 
 .icone-ponto-interesse {
-    background: white;
-    border: 3px solid #667eea;
-    border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.icone-ponto-interesse:hover {
-    transform: scale(1.15);
-    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
 }
 
 .icone-ponto-interesse span {
@@ -470,7 +445,7 @@ h1 {
     font-weight: 500;
 }
 
-/* Animações */
+/* Animacoes */
 @keyframes slideDown {
     from {
         opacity: 0;
