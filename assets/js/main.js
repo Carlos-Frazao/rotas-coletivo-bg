@@ -30,7 +30,7 @@ function carregarScript(src, callback) {
     script.onload = callback || function () { };
     document.body.appendChild(script);
 }
-carregarScript('assets/motor/leaflet-routing-machine.js');
+carregarScript('assets/js/leaflet-routing-machine.js');
 carregarScript('assets/js/localizacao.js');
 carregarScript('pontos/pontos-interesse.js', function() {
     mostrarPontosInteresse();
@@ -49,6 +49,7 @@ let pontosVisiveis = false;
 // ================================ //
 //         localizacao real         //
 // ================================ //
+
 function tracarRotaPara(destinoLatLng) {
     if (!minhaLocalizacao) {
         alert("Aguardando a deteção da sua localização atual...");
@@ -70,7 +71,9 @@ function tracarRotaPara(destinoLatLng) {
             styles: [{ color: 'red', weight: 4 }] // cor da linha da rota, e a espessura // 
         },
         language: 'pt-BR',
-        createMarker: function () { return null; } // para nao criar os marcadores padroes da rota //
+        createMarker: function () { return null; }, // para nao criar os marcadores padroes da rota //
+        show: false,
+        collapsible: true
     }).addTo(map);
 }
 

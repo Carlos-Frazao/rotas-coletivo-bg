@@ -288,8 +288,8 @@ h1 {
     position: none;
     top: 202px;
     left: 20px;
-    width: 45px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -410,6 +410,42 @@ h1 {
     color: #555;
     font-size: 12px;
     font-weight: 500;
+}
+/* ================================================== */
+/* reservado para algumas mudancas no routing machine */
+/* ================================================== */
+.leaflet-routing-container, .leaflet-routing-error {
+    width: 370px;
+    height: 160px;
+    overflow: hidden;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    color: rgb(0, 0, 0);
+}
+
+.leaflet-routing-container:not(.leaflet-routing-container-hide) {
+    overflow: auto;
+}
+
+.leaflet-control-container .leaflet-routing-container-hide {
+    width: 28px;
+    height: 28px;
+}
+
+.leaflet-routing-container-hide .leaflet-routing-collapse-btn {
+    background-image: none;
+    width: 70%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.leaflet-routing-container-hide .leaflet-routing-collapse-btn:after {
+    content: '=';
+    font-size: 14px;
+    color: #000000;
 }
 
 /* Animacoes */
