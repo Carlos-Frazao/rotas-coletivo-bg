@@ -32,7 +32,9 @@ function carregarScript(src, callback) {
 }
 carregarScript('assets/motor/leaflet-routing-machine.js');
 carregarScript('assets/js/localizacao.js');
-carregarScript('pontos/pontos-interesse.js');
+carregarScript('pontos/pontos-interesse.js', function() {
+    mostrarPontosInteresse();
+});
 carregarScript('secao/geolocation.js');
 carregarScript('rotas/rotas.js');
 carregarScript('assets/js/modal.js');
