@@ -61,13 +61,13 @@ body.modal-open {
 }
 
 .modal-close {
-    background: rgba(255, 255, 255, 0.2);
+    background: transparent;
     color: white;
     border: none;
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    font-size: 24px;
+    font-size: 30px;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -76,7 +76,7 @@ body.modal-open {
 }
 
 .modal-close:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: transparent;
     transform: rotate(90deg);
 }
 
