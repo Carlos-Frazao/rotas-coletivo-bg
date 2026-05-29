@@ -6,10 +6,10 @@
 }
 
 body {
-    background: linear-gradient(155deg, #252525 10%, #6f0f0f 100%);
+    background: linear-gradient(145deg, #101010 20%, #ad0101 100%);
     min-height: 100vh;
     padding: 10px;
-    color: #333;
+    color: #000000;
 }
 
 .container {
@@ -19,7 +19,7 @@ body {
 
 header {
     text-align: center;
-    padding: 15px 15px;
+    padding: 10px 10px;
     color: #ffffff;
     animation: slideDown 0.6s ease-out;
 }
@@ -27,7 +27,10 @@ header {
 h1 {
     font-size: clamp(1.8rem, 5vw, 2.8rem);
     margin-bottom: 10px;
-    font-weight: 500;
+    border-bottom: 3px solid rgb(255 165 0);
+    display: inline-block;
+    padding: 5px;
+    
 }
 
 .subtitle {
@@ -78,8 +81,9 @@ h1 {
 }
 
 .route-selector button {
-    background: linear-gradient(135deg, #a11d1d 0%, #d59811 100%);
-    color: white;
+    background: rgb(255 175 55);
+    border: 1px solid #959595;
+    color: #000000;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 600;
@@ -108,18 +112,14 @@ h1 {
 .map-container {
     flex: 2;
     width: 100%;
-    height: 450px;
+    height: 500px;
     border-radius: 16px;
     border: 2px solid black;
     overflow: hidden;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     background: #ffffff;
-    padding: 5px;
+    padding: 15px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.map-container:hover {
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
 }
 
 #map {
@@ -135,7 +135,7 @@ h1 {
     background: white;
     border-radius: 16px;
     border: 2px solid black;
-    padding: 28px;
+    padding: 20px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -145,31 +145,11 @@ h1 {
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
 }
 
-.info-panel h2 {
-    background: linear-gradient(135deg, #ff8e01 0%, #855601 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 20px;
-    padding-bottom: 0;
-    border-bottom: none;
-    font-size: 1.4rem;
-    font-weight: 700;
-}
-
-.highlight {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 600;
-}
-
 .route-info {
     background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
     padding: 16px;
     border-radius: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
     border-left: 4px solid #667eea;
 }
 
@@ -184,8 +164,8 @@ h1 {
 
 .attribution {
     text-align: center;
-    color: rgba(255, 255, 255, 0.8);
-    margin-top: 40px;
+    color: rgb(255 255 255 / 80%);
+    margin-top: 20px;
     font-size: 0.85rem;
     opacity: 0.8;
     animation: fadeIn 0.8s ease-out 0.4s both;
@@ -301,22 +281,22 @@ h1 {
 /* Estilizacao dos popups do mapa */
 
 /* =========================================
-   ESTILOS DO MENU DE TRÃƒÆ’Ã†â€™Ãƒâ€¦Ã‚Â S PONTOS (OFF-CANVAS)
+   ESTILOS DO MENU DE TRÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â S PONTOS (OFF-CANVAS)
    ========================================= */
 
 .btn-menu {
     position: none;
-    top: 20px;
+    top: 202px;
     left: 20px;
-    width: 48px;
-    height: 48px;
+    width: 45px;
+    height: 50px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgb(255 188 0 / 90%) 0%, rgb(149 97 1 / 90%) 100%);
-    color: #ffffff;
-    border: 2px solid black;;
-    border-radius: 50%;
+    background: rgb(255 175 55);
+    color: #000000;
+    border: 2px solid black;
+    border-radius: 30%;
     cursor: pointer;
     font-size: 28px;
     line-height: 1;
@@ -327,7 +307,6 @@ h1 {
 .btn-menu:hover,
 .btn-menu:focus-visible {
     transform: scale(1.1) rotate(90deg);
-    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
 }
 
 .menu-lateral {
@@ -336,6 +315,7 @@ h1 {
     left: -280px;
     width: 280px;
     height: 100vh;
+    border-right: 4px solid #2500ff;
     background: linear-gradient(155deg, #0b0b0b 10%, #6f0f0f 100%);
     color: white;
     transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -353,7 +333,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid rgb(255 165 0);
+    border-bottom: 3px solid rgb(255 165 0);
     padding-bottom: 15px;
     margin-bottom: 25px;
 }
@@ -362,7 +342,7 @@ h1 {
     color: #ffffff;
     font-size: 1.5rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #2500ff;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Rotas de Ônibus - Barra do Garças</title>
+    <title>Rotas Coletivo BG</title>
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="assets/css/leaflet.css">
@@ -16,12 +16,12 @@
 <body>
     <button id="btn-menu" class="btn-menu" type="button" aria-label="Abrir menu" aria-expanded="false"
         aria-controls="menu-lateral">
-        ⋮
+        ☰
     </button>
 
     <nav id="menu-lateral" class="menu-lateral" aria-hidden="true">
         <div class="menu-cabecalho">
-            <h2>Rotas BG</h2>
+            <h2>Menu</h2>
             <button id="btn-fechar" class="btn-fechar" type="button" aria-label="Fechar menu">✖</button>
         </div>
         <ul class="menu-links">
@@ -32,8 +32,8 @@
     </nav>
     <div class="container">
         <header>
-            <h1>Rotas de Ônibus - Barra do Garças!!!!</h1>
-            <p class="subtitle">Visualize as rotas do transporte coletivo da cidade</p>
+            <h1>Rotas de Ônibus - Barra do Garças</h1>
+            <p class="subtitle">Visualize rotas de transporte coletivo da cidade!</p>
         </header>
 
         <div class="route-selector">
@@ -41,8 +41,8 @@
                 <option value="">Selecione uma rota</option>
                 <option value="rota1">Rota 1: Terminal → Águas Quentes</option>
             </select>
-            <button onclick="carregarRota()">Carregar Rota</button>
-            <button onclick="alternarPontosInteresse()" class="btn-paradas" title="Mostrar/Esconder Pontos">🚏 Pontos</button>
+            <button onclick="carregarRota()">🔄 Carregar Rota</button>
+            <button onclick="alternarPontosInteresse()" class="btn-paradas" title="Mostrar/Esconder Pontos">📍 Pontos</button>
         </div>
 
         <div class="content">

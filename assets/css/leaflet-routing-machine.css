@@ -1,25 +1,30 @@
 .leaflet-routing-container, .leaflet-routing-error {
-    width: 300px;
-    height: 150px;
+    width: 370px;
+    height: 160px;
     overflow: auto;
     background-color: white;
-    padding-top: 4px;
     transition: all 0.2s ease;
     box-sizing: border-box;
+    color: rgb(0, 0, 0);
 }
 
 .leaflet-control-container .leaflet-routing-container-hide {
-    width: 36px;
+    width: 38px;
     height: 38px;
 }
 
 .leaflet-routing-container h2 {
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .leaflet-routing-container h3 {
     font-size: 12px;
     font-weight: normal;
+    border: 1px solid black;
+    width: 100px;
+    text-align: center;
+    border-radius: 10px;
+    
 }
 
 .leaflet-routing-collapsible .leaflet-routing-geocoders {
@@ -224,11 +229,10 @@
 }
 
 .leaflet-routing-container-hide .leaflet-routing-collapse-btn {
-    position: relative;
-    left: 4px;
-    top: 4px;
+    position: none;
+    top: 6px;
     display: block;
-    width: 26px;
+    width: 25px;
     height: 23px;
     background-image: url('routing-icon.png');
 }

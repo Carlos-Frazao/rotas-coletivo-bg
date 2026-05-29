@@ -52,13 +52,14 @@ function alternarPontosInteresse() {
 }
 
 window.pontosInteresse = [
-    { coords: [-15.885765838661039, -52.26668395656091], nome: "Terminal Central", icone: "🚌", tipo: "Terminal" },
+    { coords: [-15.885765838661039, -52.26668395656091], nome: "Terminal Central", icone: "🚦", tipo: "Início / Fim" },
+    { coords: [-15.882384497770131, -52.27556064960065], nome: "Havan", icone: "🏨", tipo: "Ponto 1" },
     { coords: [-15.876554906616544, -52.224567929315334], nome: "Ponto 2", icone: "📍", tipo: "Parada" },
     { coords: [-15.874555473389727, -52.232127412648154], nome: "Ponto 3", icone: "📍", tipo: "Parada" },
     { coords: [-15.875878654179695, -52.23514470837077], nome: "Ponto 4", icone: "📍", tipo: "Parada" },
     { coords: [-15.876937769672292, -52.2367793197155], nome: "Ponto 5", icone: "📍", tipo: "Parada" },
     { coords: [-15.878073560277754, -52.23912404885899], nome: "Ponto 6", icone: "📍", tipo: "Parada" },
-    { coords: [-15.882002783397061, -52.212888836554036], nome: "Ponto 7", icone: "📍", tipo: "Parada" },
+    { coords: [-15.882002783397061, -52.212888836554036], nome: "Águas Quentes", icone: "🛟", tipo: "Ponto 7" },
     { coords: [-15.884622329823237, -52.247081957796404], nome: "Ponto 8", icone: "📍", tipo: "Parada" },
     { coords: [-15.886862209876508, -52.24775206919989], nome: "Ponto 9", icone: "📍", tipo: "Parada" },
     { coords: [-15.888813390521294, -52.25101377272993], nome: "Ponto 10", icone: "📍", tipo: "Parada" },
@@ -70,18 +71,18 @@ window.pontosInteresse = [
     { coords: [-15.893138918027079, -52.26114572561775], nome: "Ponto 16", icone: "📍", tipo: "Parada" },
     { coords: [-15.891077014726465, -52.259656202443715], nome: "Ponto 17", icone: "📍", tipo: "Parada" },
     { coords: [-15.889883917109405, -52.256772879874], nome: "Ponto 18", icone: "📍", tipo: "Parada" },
-    { coords: [-15.89488539753914, -52.26422705384809], nome: "Ponto 19", icone: "📍", tipo: "Parada" },
-    { coords: [-15.884449377383106, -52.27242280679118], nome: "Ponto 20", icone: "📍", tipo: "Parada" },
+    { coords: [-15.89488539753914, -52.26422705384809], nome: "Escola Heronides Araujo", icone: "🏫", tipo: "Ponto 19" },
+    { coords: [-15.884449377383106, -52.27242280679118], nome: "Supermercado Nilo", icone: "🏬", tipo: "Ponto 20" },
     { coords: [-15.887304603765847, -52.268159817318484], nome: "Ponto 21", icone: "📍", tipo: "Parada" },
     { coords: [-15.882916556485734, -52.26437955887275], nome: "Ponto 22", icone: "📍", tipo: "Parada" },
     { coords: [-15.877682596247313, -52.26183818799017], nome: "Ponto 23", icone: "📍", tipo: "Parada" },
     { coords: [-15.891668444694401, -52.256110323036545], nome: "Ponto 24", icone: "📍", tipo: "Parada" },
-    { coords: [-15.878186352382198, -52.29458620406999], nome: "Ponto 25", icone: "📍", tipo: "Parada" },
+    { coords: [-15.878186352382198, -52.29458620406999], nome: "Rodoviária", icone: "🚌", tipo: "Ponto 25" },
     { coords: [-15.888373837132598, -52.25697256440109], nome: "Ponto 26", icone: "📍", tipo: "Parada" },
     { coords: [-15.888223324489882, -52.25788893747948], nome: "Ponto 27", icone: "📍", tipo: "Parada" },
     { coords: [-15.891319438997984, -52.262452092920846], nome: "Ponto 28", icone: "📍", tipo: "Parada" },
     { coords: [-15.889864600051894, -52.26403558422892], nome: "Ponto 29", icone: "📍", tipo: "Parada" },
-    { coords: [-15.880674509943901, -52.22756198496789], nome: "Ponto 30", icone: "📍", tipo: "Parada" },
+    { coords: [-15.880674509943901, -52.22756198496789], nome: "Escola Moreira Cabral", icone: "🏫", tipo: "Ponto 30" },
     { coords: [-15.876593516876948, -52.23201933884033], nome: "Ponto 31", icone: "📍", tipo: "Parada" },
     { coords: [-15.877951879150242, -52.231886834749], nome: "Ponto 32", icone: "📍", tipo: "Parada" },
     { coords: [-15.880279992441125, -52.23183883092783], nome: "Ponto 33", icone: "📍", tipo: "Parada" },
@@ -95,5 +96,6 @@ window.pontosInteresse = [
     { coords: [-15.880598465759567, -52.24190625442078], nome: "Ponto 41", icone: "📍", tipo: "Parada" },
     { coords: [-15.881554224572927, -52.24118174922814], nome: "Ponto 42", icone: "📍", tipo: "Parada" },
     { coords: [-15.892400569990146, -52.2624881083946], nome: "Ponto 43", icone: "📍", tipo: "Parada" },
-    { coords: [-15.875057197194023, -52.26576645146297], nome: "Ponto 44", icone: "📍", tipo: "Parada" }
+    { coords: [-15.875057197194023, -52.26576645146297], nome: "Ponto 44", icone: "📍", tipo: "Parada" },
+    { coords: [-15.890574613918906, -52.266414419034106], nome: "Supermercado Cogal", icone: "🏬", tipo: "Ponto 45" }
 ];

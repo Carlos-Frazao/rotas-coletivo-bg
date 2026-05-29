@@ -9,8 +9,8 @@ var limiteMapa = L.latLngBounds(
 var map = L.map('map', {
     center: [-15.891592075822096, -52.261878286117124],
     zoom: 13,
-    minZoom: 12,
-    maxZoom: 16,
+    minZoom: 13,
+    maxZoom: 18,
     maxBounds: limiteMapa,
     maxBoundsViscosity: 1.0
 });
@@ -73,6 +73,8 @@ function tracarRotaPara(destinoLatLng) {
         createMarker: function () { return null; } // para nao criar os marcadores padroes da rota //
     }).addTo(map);
 }
+
+
 
 // ========================================= //
 //       LÓGICA DO MENU DE TRÊS PONTOS       //
